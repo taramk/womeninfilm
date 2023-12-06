@@ -16,13 +16,6 @@ django.setup()
 from WIFapp.models import Film, Person, Genre, Star, Crew
 from django.core.exceptions import ObjectDoesNotExist
 
-# testing (credits, film_details)
-# https://api.themoviedb.org/3/movie/1891/credits?api_key=225b0e89130212d174c850b0461d683d
-# https://api.themoviedb.org/3/movie/1891?api_key=225b0e89130212d174c850b0461d683d
-
-# profile photo
-# https://api.themoviedb.org/3/person/30/images?api_key=225b0e89130212d174c850b0461d683d
-
 
 # authentication
 cfg = ConfigParser()
