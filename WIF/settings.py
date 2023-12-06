@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-yzqih)l_$g2@@!^$*_tug7z*+y5$ds-h&xg4esdv-jq5q6ku*_
 DEBUG = True
 
 
-ALLOWED_HOSTS =  ["taramk.pythonanywhere.com"]
+ALLOWED_HOSTS =  ["taramk.pythonanywhere.com", "127.0.0.1"]
 
 # Application definition
 
@@ -119,7 +119,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/WIFapp")
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/WIFapp/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
