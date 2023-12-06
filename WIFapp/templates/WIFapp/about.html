@@ -1,0 +1,36 @@
+{% extends 'WIFapp/layout.html' %}
+{% load static %}
+{% block body %}
+
+<h1>About</h1>
+<h2>The Dataset</h2>
+<p>To start with, I'm not saying all of these films are feminist films. 
+    I merely hope it make it easier to find films where women might have a significant role, either in front of or behind the camera.
+    I suspect the criteria will change over time.
+</p>
+<p>The bare minimum for a movie to be in my database is that it meets at least ONE of the following criteria:
+    <ul>
+        <li>two out of the 3 starring actors are women</li>
+        <li>the top-billed actor is a woman</li>
+        <li>it was directed by one or more women</li>
+        <li>it was written by one or more women (including writer, screenwriter, and novel roles)</li>
+    </ul>
+    I've also filtered by original language = English, to keep the dataset at a manageable size.
+</p>
+<p>I've included movies from 1960 through 2022.
+    The 1960s and 70s are top 100 by revenue per year (according to TMDB), and beyond that it's 240 per year.
+    These movies are then filtered down, and I've removed any that don't meet the criteria mentioned above.
+</p>
+    <h2>Filters</h2>
+    <h3>"Starring" women</h3>
+    <p>Defined as 2 or more women being in the top 3 billed cast</p>
+
+
+    <h3>Passes Bechdel</h3>
+    <p>Data from <a href="https://www.bechdeldata.com">Bechdel Data</a>. I may augment this data at some point.</p>
+
+    <h3>Other misc.</h3>
+    <p>Actors are only linked to a film if they've starred in it (top 3 billed, according to TMDB).</p>
+
+
+{% endblock %}
