@@ -33,8 +33,8 @@ HEADERS = {"accept": "application/json", "Authorization": cfg['tmdb']['auth']}
 
 
 
-def get_film_details(film_id):
-    url = f'https://api.themoviedb.org/3/movie/{film_id}{API_KEY}&language=en-US'
+def get_film_details(tmdb_id):
+    url = f'https://api.themoviedb.org/3/movie/{tmdb_id}{API_KEY}&language=en-US'
     return requests.get(url, headers=HEADERS).json()
 
 
@@ -49,11 +49,11 @@ def add_to_people(person):
 
 
 # STARS TABLE
-def get_film_stars(film_id):
-    url = f'https://api.themoviedb.org/3/movie/{film_id}/credits{API_KEY}'
+def get_film_stars(tmdb_id):
+    url = f'https://api.themoviedb.org/3/movie/{tmdb_id}/credits{API_KEY}'
     try:
         stars = requests.get(url, headers=HEADERS).json()['cast'][:3]
-        film_obj = Film.objects.get(tmdb_id=film_id)
+        film_obj = Film.objects.get(tmdb_id=tmdb_id)
 
         for star in stars:
             person_obj = add_to_people(star)
@@ -63,10 +63,10 @@ def get_film_stars(film_id):
 
 
 # CREW TABLE
-def get_film_crew(film_id):
-    url = f'https://api.themoviedb.org/3/movie/{film_id}/credits{API_KEY}'
+def get_film_crew(tmdb_id):
+    url = f'https://api.themoviedb.org/3/movie/{tmdb_id}/credits{API_KEY}'
     crew = requests.get(url, headers=HEADERS).json()['crew'][:50]
-    film_obj = Film.objects.get(tmdb_id=film_id)
+    film_obj = Film.objects.get(tmdb_id=tmdb_id)
     
     jobs = ['Director', 'Editor', 'Writer', 'Screenplay', 'Novel']
 
@@ -104,13 +104,13 @@ def add_film_to_films(film_details, source=None):
                 'poster_path': film_details['poster_path'],
                 'synopsis': film_details['overview'],
                 'tmdb_rating': film_details['vote_average'],
-                'source': source
             }
         )
         if created:
             genre_ids = [genre['id'] for genre in film_details['genres']]
             genres = Genre.objects.filter(id__in=genre_ids)
             film_obj.genres.set(genres)
+            film_obj.source = source
         return True
     return False # if not added to database
 

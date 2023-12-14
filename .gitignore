@@ -2,3 +2,4 @@
 /WIFapp/static/WIFapp/scripts/update_film_data.py
 /static/WIFapp/scripts/update_film_data.py
 .DS_Store
+__pycache__

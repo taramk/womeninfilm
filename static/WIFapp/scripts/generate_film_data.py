@@ -56,8 +56,8 @@ def tmdb_get_film_ids():
 
 
 # take set of IMDB ids and convert it to a list of tmdb ids
-tmdb_ids = set()
 def convert_imdbids_to_tmdb_ids(imdb_list):
+    tmdb_ids = set()
     for id in imdb_list:
         url = f'https://api.themoviedb.org/3/find/{id}{API_KEY}&external_source=imdb_id'
         response = requests.get(url, headers=HEADERS).json()
@@ -69,7 +69,7 @@ def convert_imdbids_to_tmdb_ids(imdb_list):
 
 
 def update_films(film_id):
-    film = Film.objects.get(pk=film_id)
+    film = Film.objects.get(tmdb_id=film_id)
 
     utils.update_woman_directed_status(film)
     utils.update_starring_women_status(film)
@@ -82,18 +82,20 @@ def update_films(film_id):
 
 
 def main():
+    source = 'criterion'
+
     # only run this if the database has been reset
     # get_genres()
 
     # set an input source for the film_ids (choose one, or append to set)
-    film_ids = tmdb_get_film_ids()
+    # film_ids = tmdb_get_film_ids()
     film_ids = convert_imdbids_to_tmdb_ids()
     print(f"Total films: {len(film_ids)}")
 
     # add films to the database
     for film_id in film_ids:
         film_details = utils.get_film_details(film_id)
-        if utils.add_film_to_films(film_details):
+        if utils.add_film_to_films(film_details, source=source):
             utils.get_film_stars(film_id)
             utils.get_film_crew(film_id)
             print(film_details['title'])
