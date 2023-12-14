@@ -1,0 +1,27 @@
+{% extends 'WIFapp/layout.html' %}
+{% load static %}
+{% block body %}
+
+<h1>{{ title }}</h1>
+<div class="image-grid">
+
+    {% for person in people %}
+    <a href="{% url 'person' person.id %}">
+        <div class="person-card">
+            <div class="image-container">
+                <div class="gradient-overlay"></div>
+                {% if person.photo_path %}
+                    <img src="https://image.tmdb.org/t/p/w400/{{ person.photo_path }}">
+                {% else %}
+                    <div class="placeholder image"></div>
+                {% endif %}
+                
+                <p class="image-text">{{ person.name }}</p>
+            </div>
+            
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+{% endblock %}

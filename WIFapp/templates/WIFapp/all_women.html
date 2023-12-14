@@ -1,0 +1,26 @@
+{% extends "WIFapp/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+<!-- also used in create_film_list_item -->
+
+<h1>All Women</h1>
+<p>Movies directed by a woman, written by at least one woman, starring 2+ women.</p>
+
+<div id="film-list" class="image-grid">
+    {% for film in films %}
+    <a href="{% url 'film' film.id %}">
+        <div class="film-item">
+            <div class="image-container">
+                <img src='https://image.tmdb.org/t/p/w400/{{film.poster_path}}'>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

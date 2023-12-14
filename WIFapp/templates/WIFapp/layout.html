@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Women in Film{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'WIFapp/styles.css' %}">
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <h1 class="logo"><a class="logo" href="{% url 'index' %}">Women in Film</a></h1>
+            <nav>
+                <a href="{% url 'index' %}">Discover</a>
+                <a href="{% url 'directors' %}">Directors</a>
+                <a href="{% url 'writers' %}">Writers</a>
+                <a href="{% url 'actors' %}">Actors</a>
+                <a href="{% url 'all_women' %}">All Women</a>
+                <a href="{% url 'about' %}">About</a>
+
+            </nav>
+        </header>
+        <div class="container">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
