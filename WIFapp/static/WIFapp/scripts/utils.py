@@ -150,8 +150,10 @@ def remove_testosterone():
 
 
 # delete movies that really shouldn't be here. only run this if resetting the db from scratch.
+# so far this is soft-core porn mostly, that tmdb doesn't consider "adult" but is just garbage.
+# also need to delete really short things, like a sade music video
 def cleanup():
-    delete_films = [7282, 8772]
+    delete_films = [7282, 8772, 1095, 7288]
     films_to_delete = Film.objects.filter(pk__in=delete_films)
 
     if films_to_delete.exists():
